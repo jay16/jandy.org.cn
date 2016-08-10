@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>KPI</title>
+<link rel="stylesheet" href="public/bootstrap3/css/bootstrap.min.css">
+<link rel="stylesheet" href="public/swiper3.3.1/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="public/common.css?v=123">
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<div class="top-title"></div>
+	<div class="area">
+		<div class="area-header">
+			<div class="area-title"></div>
+			<span class="area-date" data-index=""></span>
+			<div class="area-goods-category">
+				
+			</div>
+		</div>
+			<div class="area-body">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+					</div>
+				<div class="swiper-pagination"></div>
+				</div>
+
+			</div>
+			
+			
+			<div class="goods-wrapper">
+				<div class="goods-wrapper-header">
+					<div class="goods-wrapper-title">
+						<div class="goods-wrapper-title-left">
+							<span style="float: left;" class="triangle-xs triangle-up-xs"></span>
+							<span class="goods-title"></span>
+						</div>
+						<div class="goods-wrapper-title-right" >
+							<span class="rectangle-title"></span>
+							<span style="float: right;" class="triangle-xs triangle-down-xs"></span>
+							
+						</div>
+					</div>
+				</div>
+				<div class="goods-wrapper-body">
+					<ul class="goods-list">
+					<!--  
+						<li>
+							<div class="goods-li-left">
+								商品0
+							</div>
+							<div class="goods-li-right">
+								<div class="rectangle"></div>
+								<div class="target"></div>
+							</div>
+						</li>
+					-->
+					</ul>
+					<div class="goods-cover">
+						
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+
+</div>
+
+
+
+
+<div id="bar-container">
+	<div>
+		<div id="bar-title"></div>
+		<div id="bar-time"></div>
+		<div id="bar-sub-title"></div>
+		<div style="width:90%;margin-left: 10%;">
+			<div id="bar-index-1" class="bar-index"></div>
+			<div id="bar-index-2" class="bar-index"></div>
+			<div id="bar-index-3" class="bar-index"></div>
+		</div>
+	</div>
+	
+	<div id="bar"></div>
+</div>
+
+
+
+<script src="public/jquery.min.js"></script>
+<script src="public/bootstrap3/js/bootstrap.min.js"></script>
+<script src="public/swiper3.3.1/swiper-3.3.1.min.js"></script>
+<script src="public/echarts.common.min.js"></script>
+<script src="public/data.js"></script>
+<script src="public/parse.js"></script>
+
+<script>
+
+
+//商品列表 li的高度 
+$(function(){
+	KPIParse.init(KPIData,KPIColor);
+
+});
+</script>
+
+</body>
+
+
+
+</html>
