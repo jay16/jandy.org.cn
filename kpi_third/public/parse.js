@@ -187,6 +187,7 @@
 				
 			}
 			this.setAreaItemActive(ItemIndex);
+		
 		},
 		setAreaItemActive:function(index){
 			$('.area-item-active').removeClass('area-item-active');
@@ -207,7 +208,6 @@
 			}
 			//ItemIndex=$('.area-item-active').attr('data-item');
 			this.setGoodsListRight();
-			$('.goods-wrapper-title-right .rectangle-title').html($('.area-item-active').find('.area-item-1').html());
 		},
 		
 		setGoodsListRight:function(){
@@ -293,7 +293,8 @@
 	
 					var scale=(Number(products[i].items[ItemIndex].main_data.data)-Number(products[i].items[ItemIndex].sub_data.data))/products[i].items[ItemIndex].sub_data.data;
 				
-					var width3=scale/scale_max*100;
+					
+					var width3=Math.abs(scale)/scale_max*100;
 					
 					if(Number(scale)>=0){
 						$('.goods-list li[data-id="'+i+'"]').find('.rectangle-3').css({
@@ -306,7 +307,7 @@
 						});
 					}else{
 						$('.goods-list li[data-id="'+i+'"]').find('.rectangle-3').css({
-							"width":"-"+width3+"%",
+							"width":width3+"%",
 							"left":"-"+width3+"%",
 							"background-color":KPIColor.red,
 						});
@@ -316,7 +317,7 @@
 					}
 					$('.goods-list li[data-id="'+i+'"]').find('.rectangle-3-value').html(Number(scale*100).toFixed(2)+'%');
 					$('.goods-list li[data-id="'+i+'"]').attr('data-value-3',Number(scale).toFixed(2));
-				
+					
 				}else{
 					$('.goods-list li[data-id="'+i+'"]').find('.rectangle-2').css({
 						"width":"0%",
@@ -331,6 +332,7 @@
 						"left":"0px",
 						"background-color":"",
 					});
+					
 					$('.goods-list li[data-id="'+i+'"]').find('.rectangle-3-value').html('一');
 					$('.goods-list li[data-id="'+i+'"]').find('.rectangle-3-value').css("color",KPIColor.yellow);
 				}
@@ -378,6 +380,7 @@
 			$('.rectangle-3-value').css("display","none");
 			
 			if(RightIndex==3){
+				$('.rectangle-title').html('%');
 				$('.goods-li-right-3').css('display',"block");
 				if(RightType==2){
 					$('.rectangle-3-value').css("display","block");
@@ -385,6 +388,7 @@
 					$('.rectangle-3').css("display","block");
 				}
 			}else if(RightIndex==2){
+				$('.rectangle-title').html('变化');
 				$('.goods-li-right-2').css('display',"block");
 				if(RightType==2){
 					$('.rectangle-2-value').css("display","block");
@@ -392,6 +396,7 @@
 					$('.rectangle-2').css("display","block");
 				}
 			}else{
+				$('.rectangle-title').html($('.area-item-active .area-item-1').html());
 				$('.goods-li-right').css('display',"block");
 				if(RightType==2){
 					$('.rectangle-value').css("display","block");
@@ -399,6 +404,7 @@
 					$('.rectangle').css("display","block");
 				}
 			}
+			
 		},
 		//返回RightIndex
 		getRightIndex:function(){
@@ -963,7 +969,12 @@
 		setTimeout(function () {
 			if(ClickTimes>1){//双击事件
 				KPIParse.setAreaItemActive($this.attr('data-item'));
+				
+				$('.area-title').html($this.find('.area-item-1').html());
+				KPIParse.setGoodsWrapper();
+				
 				KPIParse.setChart();
+				
 				ChartFlag=1;
 			}else if(ClickTimes==1){//单击事件
 				KPIParse.setAreaItemActive($this.attr('data-item'));
@@ -1050,7 +1061,7 @@
 					}
 					$('.goods-li-right').hide();
 					$('.goods-li-right-3').show();
-					$('.rectangle-title').html("%");
+					$('.rectangle-title').html('%');
 				}
 				if(RightIndex==2){
 					if(RightType==1){
@@ -1062,7 +1073,7 @@
 					}
 					$('.goods-li-right-3').hide();
 					$('.goods-li-right-2').show();
-					$('.rectangle-title').html("变化");
+					$('.rectangle-title').html('变化');
 				}
 				if(RightIndex==1){
 					if(RightType==1){
@@ -1094,7 +1105,7 @@
 					}
 					$('.goods-li-right-2').hide();
 					$('.goods-li-right-3').show();
-					$('.rectangle-title').html("%");
+					$('.rectangle-title').html('%');
 				}
 				if(RightIndex==2){
 					if(RightType==1){
@@ -1106,7 +1117,7 @@
 					}
 					$('.goods-li-right').hide();
 					$('.goods-li-right-2').show();
-					$('.rectangle-title').html("变化");
+					$('.rectangle-title').html('变化');
 				}
 				if(RightIndex==1){
 					if(RightType==1){
@@ -1174,14 +1185,6 @@
 
 
 $(function(){
-	/*
-	if($(window).innerHeight()-$('html body').height()>0){
-		
-		var height=Number($('.goods-list').css("padding-bottom").replace(/px/,""))+$(window).innerHeight()-$('html body').height();
-		
-		$('.goods-list').css("padding-bottom",height);
-		$('html body').height($(window).innerHeight());
-	};*/
 
 });
 
